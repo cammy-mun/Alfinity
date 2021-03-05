@@ -1,0 +1,227 @@
+{% extends "base.html" %} {% block content %}
+
+
+<div>
+    <center>
+    <h2>Mood-Based Music</h2>
+    <h5>It's selfie time!</h5>
+    <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Choose...
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+    </form>
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+        </div>
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+
+    <h3 id="result">
+        <span></span>
+    </h3>
+</center>
+    <body>
+        <center>
+            <h2 style="color: green"> Upload an image and get recommendations of Spotify Playlists based on your facial emotion! </h2>
+            <h3> Click the button to generate a random string </h3>
+
+            <form name="randomform">
+                <!-- <input type="button" value="Generate Spotify Playlist Link" onClick="randomString();"> -->
+                <input type = "button" onclick = "choosePlaylist()" value= "Generate Playlist!"  class="generate-label">
+                <br><br>
+                <b><p id="randomfield" style="color: green"> </p></b>
+            </form>
+
+        </center>
+    </body>
+
+
+    <script type = "text/javascript">
+// <!-- <script language = "Javascript" src="../static/js/main.js"> -->
+
+        var data = 'happy';
+
+        function choosePlaylist(){
+            if (data == 'happy'){
+                document.getElementById('happy').style.display = 'block';
+            } else if (data == 'sad'){
+                document.getElementById('sad').style.display = 'block';
+            } else if (data == 'angry'){
+                document.getElementById('angry').style.display = 'block';
+            } else if (data == 'surprise'){
+                document.getElementById('surprise').style.display = 'block';
+            } else if (data == 'neutral'){
+                document.getElementById('neutral').style.display = 'block';
+            } else if (data == 'disgust'){
+                document.getElementById('disgust').style.display = 'block';
+            } else {
+                document.getElementById('fear').style.display = 'block';
+            }
+            console.log(data);
+        }
+        </script>
+<!-- // // function randomString() {
+
+// var happy = ["https://open.spotify.com/playlist/37i9dQZF1DXdPec7aLTmlC",
+//     "https://open.spotify.com/playlist/37i9dQZF1DWSf2RDTDayIx",
+//     "https://open.spotify.com/playlist/37i9dQZF1DWZdLqpoFOt65",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX0UrRvztWcAU",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX9u7XXOp0l5L",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX1H4LbvY4OJi",
+//     "https://open.spotify.com/playlist/37i9dQZF1DXeby79pVadGa",
+//     "https://open.spotify.com/playlist/1ilnl1Y2nXfTfTFJuPgp6H",
+//     "https://open.spotify.com/playlist/3Ah9fSc04wc21xpfzGR8Cx",
+//     "https://open.spotify.com/playlist/4TrSSYgDHY6T5zqwYY1MbP",
+//     "https://open.spotify.com/playlist/1z5rAnfV2A1ai8LwiJZIww",
+//     "https://open.spotify.com/playlist/2HFPUj1LDfcxPo1wk48jSl",
+//     "https://open.spotify.com/playlist/3umALRsaxXEcUl5HyGH3oE",
+//     "https://open.spotify.com/playlist/1KJJtOvxaRWSdsv8bs5M13",
+//     "https://open.spotify.com/playlist/11k8YPgab7tIUaMZzoqOZV",
+//     "https://open.spotify.com/playlist/6p14jxvcyBQQ2BOeeZSCjB"];
+// var sad =["https://open.spotify.com/playlist/3c0Nv5CY6TIaRszlTZbUFk",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX7qK8ma5wgG1",
+//     "https://open.spotify.com/playlist/37i9dQZF1DWZUAeYvs88zc",
+//     "https://open.spotify.com/playlist/4yXfnhz0BReoVfwwYRtPBm",
+//     "https://open.spotify.com/playlist/0uVeGcLzYnzdIm23yve8K8",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX64Y3du11rR1",
+//     "https://open.spotify.com/playlist/4HBkSFTG8PRu9lMM2tvlyq",
+//     "https://open.spotify.com/playlist/7ldp9yPrXzrRpcen0xdDZZ",
+//     "https://open.spotify.com/playlist/3OQ2KiS8XSBgtSqF1NyPGH",
+//     "https://open.spotify.com/playlist/3y9YbrxtaOMTURvMUX6qCn",
+//     "https://open.spotify.com/playlist/34BxFKYFnlHXtaGvj8G0Vk",
+//     "https://open.spotify.com/playlist/5jpY5wcVaGLvD0pol47IIG",
+//     "https://open.spotify.com/playlist/34BxFKYFnlHXtaGvj8G0Vk",
+//     "https://open.spotify.com/playlist/4DXd2quq7v0yqfBAJ4nqh8",
+//     "https://open.spotify.com/playlist/5H1Pko9OVjCUDDULt5Jcze",
+//     "https://open.spotify.com/playlist/4CKAsspIObJ1mlczGK374D",
+//     "https://open.spotify.com/playlist/0n62chGOeJz0uNUFu1fR6Q",
+//     "https://open.spotify.com/playlist/1xD0P66GcMeAVoOAPFu7Hy"
+//     ];
+// var angry = ["https://open.spotify.com/playlist/5LUQLIlEmYXsHEi36Z6Q15",
+//     "https://open.spotify.com/playlist/3wvDfjeXW2JpuvnxTZpS3x",
+//     "https://open.spotify.com/playlist/5bWn8XcgI3hv2vpWjNq8la",
+//     "https://open.spotify.com/playlist/72lWoXCNLTK2AHKPNrW6AC",
+//     "https://open.spotify.com/playlist/7L08IETH8EQmm7k4r8rivb",
+//     "https://open.spotify.com/playlist/2PiNxhDiA8ijwiPhZxdp7b",
+//     "https://open.spotify.com/playlist/76BsF8XczkiiPuS3NKW55m",
+//     "https://open.spotify.com/playlist/2oaHeIsP2LTQlPjBuVtjkt",
+//     "https://open.spotify.com/playlist/7HLviM1f5zgYKXFcSykxQb",
+//     "https://open.spotify.com/playlist/4wVjevnTJDiqtZtAob2VGu",
+//     "https://open.spotify.com/playlist/0FnkzmoeHcp2HhdUQ3s60I",
+//     "https://open.spotify.com/playlist/70nYxfWrwoiXsAPjODISZ6",
+//     "https://open.spotify.com/playlist/0r37YieimcsBhlaTM4io9k",
+//     "https://open.spotify.com/playlist/5dAyq1CjLGtdGuNTNueXXb",
+//     "https://open.spotify.com/playlist/3H1xKEIFcaVebo0UmcFY9X"
+//     ];
+// var surprise = ["https://open.spotify.com/playlist/3YiPriY4fscPygkzZndBOd",
+//     "https://open.spotify.com/playlist/37i9dQZF1DWYWddJiPzbvb",
+//     "https://open.spotify.com/playlist/7u3eIzGKXMJyIIw1pGSkPh",
+//     "https://open.spotify.com/playlist/1NYtUntSxBrLrtvb7oj2jQ",
+//     "https://open.spotify.com/playlist/3CUpYjEl8N4KQWT57iJJD7",
+//     "https://open.spotify.com/playlist/7KP4SLTutz6oQ1Fzkxfk7f",
+//     "https://open.spotify.com/playlist/2RXRwA2oaQREFtptEwMmex",
+//     "https://open.spotify.com/playlist/1Nos6xcRweyBdtUCdwJlyA"
+//     ];
+// var neutral = ["https://open.spotify.com/playlist/7sXp69YbZzHTeBwRYtA26t",
+//     "https://open.spotify.com/playlist/37i9dQZF1DXdNR7UbdVQiC",
+//     "https://open.spotify.com/playlist/4dTWjLQFW33AWDTIa534QI",
+//     "https://open.spotify.com/playlist/3VEodO8usDPPQKOSYwBbc4",
+//     "https://open.spotify.com/playlist/7HcEqHJbfNtgasG22IRA1R",
+//     "https://open.spotify.com/playlist/2ODMZHnO9zcajVJ54Rlhz7",
+//     "https://open.spotify.com/playlist/3piPkdEZDOGTF2UNm6ZaEd",
+//     "https://open.spotify.com/playlist/0DBASEHROYYBhzdcjUYxhs",
+//     "https://open.spotify.com/playlist/5iYnOIWYvMUtgxkuzKCdE3",
+//     "https://open.spotify.com/playlist/3nKUE1E1ShpBqtyj5hmZRW",
+//     "https://open.spotify.com/playlist/6qoDcFvfHGJ1vFxsY46lLP",
+//     "https://open.spotify.com/playlist/1qKx5AmihdiQJrMjd98uxf",
+//     "https://open.spotify.com/playlist/0DvDDZUnvfRIify2k3GkyJ",
+//     "https://open.spotify.com/playlist/6JcUghQIo1jqwZjJUp8Zmd",
+//     "https://open.spotify.com/playlist/726CB6VW7nqSny3v23oNQH",
+//     "https://open.spotify.com/playlist/0q55CCnGcc4SiwHTUkERxu",
+//     "https://open.spotify.com/album/1nMHkGDJwTvoW3LTTdUVwA",
+//     "https://open.spotify.com/album/2jkc5upzPFiOSGEwdbnqyN",
+//     "https://open.spotify.com/album/3CyBEjSTEzyWpy4TiYqUG7",
+//     "https://open.spotify.com/album/4ceVrt09ZJ1DFDWS8aMGT7",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX7K31D69s4M1"
+//     ];
+// var disgust =["https://open.spotify.com/playlist/0RfuKkGkWiCRJ7SZBHNwmL",
+//     "https://open.spotify.com/playlist/4WgMJJ9wPqRma6ALjhpYwL",
+//     "https://open.spotify.com/playlist/4jiqMX7B85OrdGDtyOlEAD",
+//     "https://open.spotify.com/playlist/0wf8wn3JOx3LNuJsxZyr0z"
+//     ];
+// var fear = ["https://open.spotify.com/playlist/37i9dQZF1DZ06evO2rEeYg",
+//     "https://open.spotify.com/playlist/1WbfuD9BjHS3FipZLqCHae",
+//     "https://open.spotify.com/playlist/6EF56fuiUgN2GOMVZIiXpq",
+//     "https://open.spotify.com/playlist/37i9dQZF1DZ06evO4burAJ",
+//     "https://open.spotify.com/playlist/3rPBkTFz8dl188upXtyflm",
+//     "https://open.spotify.com/playlist/37i9dQZF1DX7K31D69s4M1"
+//     ];
+
+
+
+// var lenhappy = 16;
+// var lensad = 18;
+// var lenangry = 15;
+// var lensurprise = 8;
+// var lenneutral = 21;
+// var lendisgust = 4;
+// var fear = 6;
+// var randomstring = '';
+
+// var rhappy = happy[Math.floor(Math.random() * lenhappy)];
+
+
+// // }
+
+// // var answer = 'happy'; -->
+
+
+
+<div>
+        <div id='happy' style="display:none">
+            <h2>Happy Playlist</h2>
+            <iframe src= "https://open.spotify.com/embed/playlist/37i9dQZF1DWSf2RDTDayIx" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+        <div id='sad' style="display:none">
+            <h2>Sad Playlist</h2>
+        <iframe src="https://open.spotify.com/embed/playlist/3c0Nv5CY6TIaRszlTZbUFk" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+        <div id='angry' style="display:none">
+            <h2>Angry Playlist</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/5LUQLIlEmYXsHEi36Z6Q15" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+        <div id='surprise' style="display:none">
+            <h2>Surprise Playlist</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/3YiPriY4fscPygkzZndBOd" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+        <div id='neutral' style="display:none">
+            <h2>Neutral Playlist</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/7sXp69YbZzHTeBwRYtA26t" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+        <div id='disgust' style="display:none">
+            <h2>Disgust Playlist</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/0RfuKkGkWiCRJ7SZBHNwmL" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+
+        <div id='fear' style="display:none">
+            <h2>Fear Playlist</h2>
+            <iframe src="https://open.spotify.com/embed/playlist/6EF56fuiUgN2GOMVZIiXpq" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

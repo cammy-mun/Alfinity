@@ -1,0 +1,13 @@
+name: flask-basic
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7.10
+  - flask
+  - gevent
+  - pillow
+  - keras
+  - tensorflow
+  - jpeg
+prefix: C:\Users\chuaz\Anaconda3\envs\flask-basic
